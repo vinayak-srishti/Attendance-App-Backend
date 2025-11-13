@@ -10,7 +10,7 @@ exports.markAttendance = async (req, res) => {
 
     const record = new Attendance({
       name,
-      date, // ✅ Use the date from req.body
+      date, 
       attendance,
       specialNote,
       visits
@@ -18,6 +18,16 @@ exports.markAttendance = async (req, res) => {
 
     await record.save();
     res.status(201).json({ message: "Attendance recorded successfully", record });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+
+exports.getAttendanceRecords = async (req, res) => {
+  try {
+    const records = await Attendance.find().sort({ date: -1 }); 
+    res.status(200).json(records);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
