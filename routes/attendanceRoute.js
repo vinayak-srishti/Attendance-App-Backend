@@ -5,10 +5,10 @@ const {
 //   getAllAttendance
 } = require("../controllers/attendanceController");
 
-// POST → Mark attendance
+// POST - Mark attendance
 router.post("/mark-attendance", markAttendance);
 
-// GET → Get all attendance records
-// router.get("/get-attendance", getAllAttendance);
+// GET - Get all attendance records
+router.get("/get-attendance", getAttendanceRecords);
 
 module.exports = router;
